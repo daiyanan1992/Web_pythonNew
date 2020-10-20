@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+from Web_Sz.PageLocators.loginpage_locators import LoginPageLocators as loc
 
 class LoginPage:
 
@@ -12,28 +12,26 @@ class LoginPage:
 
     #登录
     def login(self,username,passwd):
-        name_text = '//input[@id="username"]'
-        pwd_text = '//input[@id="password"]'
-        login_button = '//input[@id="loginBtn"]'
-        WebDriverWait(self.driver,20).until(EC.visibility_of_element_located((By.XPATH,name_text)))
-        self.driver.find_element_by_xpath(name_text).send_keys(username)
-        self.driver.find_element_by_xpath(pwd_text).send_keys(passwd)
-        self.driver.find_element_by_xpath(login_button).click()
+        # name_text = '//input[@id="username"]'
+        # pwd_text = '//input[@id="password"]'
+        # login_button = '//input[@id="loginBtn"]'
+        WebDriverWait(self.driver,20).until(EC.visibility_of_element_located(loc.name_text))
+        self.driver.find_element(*loc.name_text).send_keys(username)
+        self.driver.find_element(*loc.pwd_text).send_keys(passwd)
+        self.driver.find_element(*loc.login_button).click()
 
     #登录空用户名
     def isUserNameLoginEle(self):
         try:
-            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located((By.XPATH,'//em[text()="请输入正确格式的用户名!"]')))
+            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc.null_username))
             return True
         except:
             return False
     #错误用户名及密码
     def errorUserNameLoginEle(self):
-        try:
-            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located((By.XPATH,'//em[text()="登录失败,请确认账号和密码正确"]')))
-            return True
-        except:
-            return False
+        WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc.error_username))
+        return self.driver.find_element(*loc.error_username).text
+
     #注册
     def register(self):
         pass
