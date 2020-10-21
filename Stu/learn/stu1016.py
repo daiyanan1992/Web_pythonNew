@@ -38,6 +38,6 @@ WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,'//a[c
 # driver.find_element_by_xpath('//*[@id="3002"]/div[1]/h3/a').click()
 # driver.execute_script('arguments[0].scrollIntoView(false);','//a[contains(text()," 基础教程 | 菜鸟教程")]')
 driver.execute_script("arguments[0].scrollIntoView();", '//a[contains(text()," 基础教程 | 菜鸟教程")]')
-
-
+driver.window_handles
+driver.switch_to.window()
 # driver.quit()
