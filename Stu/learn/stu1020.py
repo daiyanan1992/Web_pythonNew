@@ -28,8 +28,31 @@
 #
 # if __name__ == '__main__':
 #     unittest.main(verbosity=2)
-from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.by import By
+#
+# class LoginPageLocators:
+#     name_text = (By.XPATH,'//input[@id="username"]')
+# print(*LoginPageLocators.name_text)
 
-class LoginPageLocators:
-    name_text = (By.XPATH,'//input[@id="username"]')
-print(*LoginPageLocators.name_text)
+# 截图方式二
+# coding=utf-8
+from selenium import webdriver
+import time
+from datetime import datetime
+driver = webdriver.Chrome()
+driver.get("https://www.baidu.com")
+driver.maximize_window()
+time.sleep(2)
+try:
+    # driver.save_screenshot('.\\baidu1.png')
+    # print("%s ：截图成功！！！" % picture_url
+# )
+    file_name ='D:\\Web_pythonNew\\Web_Sz\\Outputs\\screenshots\\{0}_{1}.png'.format('daiy')
+    print(file_name)
+    str = datetime.now()
+    print(str+type(str))
+
+    driver.save_screenshot(file_name)
+except BaseException as msg:
+    print("%s ：截图失败！！！" % msg)
+driver.quit()
